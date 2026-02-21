@@ -1,0 +1,7 @@
+Flask
+Flask[async]
+requests
+google-genai
+python-dotenv
+flask_cors
+gunicorn
