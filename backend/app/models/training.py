@@ -9,7 +9,7 @@ data = pd.read_csv("data/clean_symptoms.csv")
 
 # Features and target
 X = data.drop("prognosis", axis=1)
-y = data["progronsis"]
+y = data["prognosis"]
 
 encoder = LabelEncoder()
 y_encoded = encoder.fit_transform(y)
@@ -23,15 +23,14 @@ X_train, X_test, y_train, y_test = train_test_split(
 model = RandomForestClassifier(n_estimators=200)
 model.fit(X_train, y_train)
 
-# # Evaluate
-# predictions = model.predict(X_test)
-# print("Accuracy:", accuracy_score(y_test, predictions))
+# Save symptom column order
+symptom_columns = X.columns.tolist()
 
 # # Save model
 joblib.dump(model, "trained_ml/disease_model.pkl")
 joblib.dump(encoder, "trained_ml/label_encoder.pkl")
+joblib.dump(symptom_columns, "trained_ml/symptom_columns.pkl")
 
 print(data.head())
 print(data.shape)
 print(data["prognosis"].unique())
-# prob = model.predict_proba(new_input)
