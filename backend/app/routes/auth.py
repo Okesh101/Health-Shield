@@ -1,8 +1,7 @@
 import sqlite3
-from flask import Flask, request, jsonify, Blueprint
+from flask import request, jsonify, Blueprint
 from app.database.database import get_db_connection
 import hashlib
-import json
 
 from dbm import sqlite3
 

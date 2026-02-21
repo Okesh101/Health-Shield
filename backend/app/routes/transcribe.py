@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from werkzeug.utils import secure_filename
 from groq import Groq
 from dotenv import load_dotenv
 import os
