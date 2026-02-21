@@ -48,7 +48,7 @@ export default function Login() {
       body: JSON.stringify({"formData" : formData}),
     });
     const data = await res.json();
-    navigate
+    navigate("/dashboard");
     console.log(data);
   };
 
