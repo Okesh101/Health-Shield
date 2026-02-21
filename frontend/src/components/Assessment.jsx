@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import RecorderIcon from "../assets/recorderIcon.png";
 import { FiMic, FiFileText } from "react-icons/fi";
