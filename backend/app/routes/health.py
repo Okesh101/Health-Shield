@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, Blueprint
+from flask import Flask, jsonify, Blueprint
 
 health_bp = Blueprint('health', __name__, url_prefix='/api/v1')
 
