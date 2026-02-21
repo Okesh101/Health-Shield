@@ -13,6 +13,7 @@ def create_app():
     from app.routes.auth import auth_bp
     from app.database.database import init_db
     from app.routes.predict import predict_bp
+    from app.routes.chat import chat_bp
 
     init_db()
 
@@ -20,6 +21,7 @@ def create_app():
     app.register_blueprint(transcribe_bp)
     app.register_blueprint(auth_bp)
     app.register_blueprint(predict_bp)
+    app.register_blueprint(chat_bp)
 
     return app
 

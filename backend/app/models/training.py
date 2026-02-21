@@ -28,8 +28,8 @@ model.fit(X_train, y_train)
 # print("Accuracy:", accuracy_score(y_test, predictions))
 
 # # Save model
-joblib.dump(model, "disease_model.pkl")
-joblib.dump(encoder, "label_encoder.pkl")
+joblib.dump(model, "trained_ml/disease_model.pkl")
+joblib.dump(encoder, "trained_ml/label_encoder.pkl")
 
 print(data.head())
 print(data.shape)
