@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from models.converse import follow_up_response, generate_ml_features, extract_symptoms
+from app.models.converse import follow_up_response, generate_ml_features, extract_symptoms
 
 chat_bp = Blueprint('chat', __name__, url_prefix='/api/v1/chat')
 
