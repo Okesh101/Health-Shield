@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import Login from "./components/Login";
 
 function App() {
   return (
     <>
-      <Login />
+    {/* <AnimatePresence mode="wait"> */}
+       <Login />
+    {/* </AnimatePresence> */}
     </>
   );
 }
