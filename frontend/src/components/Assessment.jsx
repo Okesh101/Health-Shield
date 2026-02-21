@@ -64,7 +64,7 @@ export default function Assessment() {
       });
 
       const data = await response.json();
-      console.log("Transcribed:", data.text2);
+      console.log("Transcribed: ", data.text2);
       alert("Audio sent successfully!");
     } catch (error) {
       console.error("Upload error:", error);
