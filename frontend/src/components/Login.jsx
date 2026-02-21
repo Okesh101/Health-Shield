@@ -8,7 +8,6 @@ export default function Login() {
     password: "",
   });
   const [currentTab, setCurrentTab] = useState("signup");
-  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +29,7 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({formData}),
+      body: JSON.stringify({"formData" : formData}),
     });
     const data = await res.json();
     console.log(data);
@@ -44,7 +43,7 @@ export default function Login() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({formData}),
+      body: JSON.stringify({"formData" : formData}),
     });
     const data = await res.json();
     console.log(data);

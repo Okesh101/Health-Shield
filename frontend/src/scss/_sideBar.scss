@@ -1,0 +1,31 @@
+.sideBar_section {
+  background: linear-gradient(180deg, #0f1c2e 0%, #0b1624 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 350px;
+  padding: 30px;
+  min-height: 100vh;
+  p{
+    color: white;
+    margin-bottom: 20px;
+    b{
+        font-size: 18px;
+    }
+  }
+  button {
+    padding: 13px 30px;
+    background-color: transparent ;
+    border: none;
+    color: white;
+    font-size: 16px;
+    // font-weight: bold;
+    text-align: start;
+    &:hover{
+        background: linear-gradient(135deg, #0b348b, #082fafc0);
+         padding: 13px 30px;
+         border-radius: 15px;
+    }
+  }
+}
