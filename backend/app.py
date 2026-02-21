@@ -11,6 +11,9 @@ def create_app():
     from app.routes.health import health_bp
     from app.routes.transcribe import transcribe_bp
     from app.routes.auth import auth_bp
+    from app.database.database import init_db
+
+    init_db()
 
     app.register_blueprint(health_bp)
     app.register_blueprint(transcribe_bp)

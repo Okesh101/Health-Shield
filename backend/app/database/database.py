@@ -6,17 +6,19 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # Put the actual .db file in the same folder as database.py
 DB_PATH = os.path.join(BASE_DIR, "health_ai.db")
 
+
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
     # This line lets you access columns by name: row['username']
-    conn.row_factory = sqlite3.Row 
+    conn.row_factory = sqlite3.Row
     return conn
+
 
 def init_db():
     conn = get_db_connection()
 
     # Create User table
-    cursor.execute('''
+    conn.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE,
@@ -26,7 +28,7 @@ def init_db():
     ''')
 
     # Create Assessment table (linking to user)
-    cursor.execute('''
+    conn.execute('''
         CREATE TABLE IF NOT EXISTS assessments (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
@@ -37,6 +39,5 @@ def init_db():
             FOREIGN KEY(user_id) REFERENCES users(id)
         )
     ''')
-    connection.commit()
+    conn.commit()
     conn.close()
-
