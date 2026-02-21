@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ export default function Login() {
     });
   };
 
+  const navigate = useNavigate();
   // const handleSignIn = () => {
   //   setCurrentTab("signin");
   // }
@@ -46,6 +48,7 @@ export default function Login() {
       body: JSON.stringify({"formData" : formData}),
     });
     const data = await res.json();
+    navigate("/dashboard");
     console.log(data);
   };
 

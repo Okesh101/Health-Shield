@@ -10,7 +10,7 @@ export default function Dashboard() {
     <div className="container">
       <Sidebar />
       <div className="dashboard_page">
-        <div className="heading">
+        <div className="page_nav">
             <h3>Dashboard</h3>
             <p>helo</p>
         </div>

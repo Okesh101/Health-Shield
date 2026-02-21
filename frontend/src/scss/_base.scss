@@ -13,3 +13,26 @@ body {
   background: radial-gradient(circle at top left, #0f1c2e, #0a0f1c 60%);
   color: white;
 }
+
+.page_nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.329);
+
+    h3 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    p {
+      background: rgba(59, 130, 246, 0.15);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #93c5fd;
+    }
+  }
