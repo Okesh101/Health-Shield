@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -6,6 +7,8 @@ export default function Login() {
     email: "",
     password: "",
   });
+  const [currentTab, setCurrentTab] = useState("signup");
+  const [isFlipped, setIsFlipped] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,15 +18,33 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = async(e) => {
+  // const handleSignIn = () => {
+  //   setCurrentTab("signin");
+  // }
+
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    
+
     const res = await fetch("http://127.0.0.1:5000/api/v1/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({formData}),
+    });
+    const data = await res.json();
+    console.log(data);
+    setCurrentTab("login");
+  };
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch("http://127.0.0.1:5000/api/v1/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({formData}),
     });
     const data = await res.json();
     console.log(data);
@@ -33,31 +54,74 @@ export default function Login() {
     <div className="wrapper">
       <div className="logIn_page">
         <div className="signUp_section">
-          <h1>Sign Up</h1>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="fullName"
-              placeholder="Full name e.g John Doe"
-              value={formData.fullName}
-              onChange={handleChange}
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email e.g john@example.com"
-              value={formData.email}
-              onChange={handleChange}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <button type="submit">Submit</button>
-          </form>
+          <AnimatePresence mode="wait">
+            {currentTab === "signup" ? (
+              <motion.div
+                key="signup"
+                className="signUp_wrapper"
+                initial={{ x: "300px", opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: "300px", opacity: 0 }}
+                transition={{ duration: 0.7 }}
+              >
+                <h1>Sign Up</h1>
+                <form onSubmit={handleSignUp}>
+                  <input
+                    type="text"
+                    name="fullName"
+                    placeholder="Full name e.g John Doe"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    get
+                    url
+                    placeholder="Email e.g john@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  <button type="submit">Sign Up</button>
+                </form>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="login"
+                className="logIn_wrapper"
+                initial={{ x: "200px", opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: "-200px", opacity: 0 }}
+                transition={{ duration: 0.7, delay: .5, ease: "easeInOut" }}
+              >
+                <h1>Log In</h1>
+                <form onSubmit={handleLogIn}>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email e.g john@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  <button type="submit">Log In</button>
+                </form>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="content">
