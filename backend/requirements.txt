@@ -5,3 +5,11 @@ google-genai
 python-dotenv
 flask_cors
 gunicorn
+openai
+groq
+scikit-learn 
+pandas 
+numpy 
+matplotlib 
+seaborn 
+joblib
