@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Icon from "../assets/icon.jpg";
 import { useLocation, useNavigate } from "react-router-dom";
-import useWindowSize from "../hook/useWindowSize";
 
 export default function Sidebar() {
   const location = useLocation();
