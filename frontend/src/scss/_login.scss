@@ -23,7 +23,6 @@
     border-radius: 24px;
     overflow: hidden;
 
-    // Glass card effect
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(18px);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -41,7 +40,6 @@
       border-radius: 20px;
     }
 
-    // Vertical divider line
     &::after {
       content: "";
       position: absolute;
