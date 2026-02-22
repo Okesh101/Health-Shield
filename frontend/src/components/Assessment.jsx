@@ -14,7 +14,14 @@ export default function Assessment() {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const [textInput, setTextInput] = useState("");
+  const [reportData, setReportData] = useState("")
+  const [textInput1, setTextInput1] = useState("")
   const [followUpData, setFollowUpData] = useState("");
+
+   const [voiceFollowUpData, setVoiceFollowUpData] = useState("");
+  const [voiceReportData, setVoiceReportData] = useState("");
+  const [voiceTextInput1, setVoiceTextInput1] = useState("");
+
   const handleVoice = () => setSelectedMode("voice");
   const handleText = () => setSelectedMode("text");
 
@@ -70,11 +77,51 @@ export default function Assessment() {
       const data = await response.json();
       console.log("Transcribed:", data.transcribed_text);
       setTranscribedText(data.transcribed_text);
+
+       await sendVoiceTranscribeTextToBackend(data.transcribed_text);
+
       alert("Audio sent successfully!");
     } catch (error) {
       console.error("Upload error:", error);
     }
   };
+
+  const sendVoiceTranscribeTextToBackend = async (text) => {
+    try{
+      const res = await fetch("http://127.0.0.1:5000/api/v1/follow-up", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "userLog": text }),
+      });
+      const data = await res.json();
+      setVoiceFollowUpData(data.response);
+    } catch (error) {
+      console.log("Error sending transcribed text to backend:", error);
+    }
+  }
+
+   const sendVoiceExplainedTextToBackend = async () => {
+    try {
+      const res = await fetch(
+        "http://127.0.0.1:5000/api/v1/generate-prediction",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ "userLog": voiceTextInput1 }),
+        }
+      );
+      const data = await res.json();
+      setVoiceReportData(data);
+      console.log(data);
+    } catch (error) {
+      console.log("Voice text submission error:", error);
+    }
+  };
+
 
   // Send text input to the backend
   const sendTextToBackend = async () => {
@@ -103,11 +150,11 @@ export default function Assessment() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ userLog: textInput }),
+          body: JSON.stringify({ userLog: textInput1 }),
         }
       );
       const data = await res.json();
-      setFollowUpData(data.report);
+      setReportData(data.report);
       console.log(data.report);
     } catch (error) {
       console.log("Text submission error:", error);
@@ -142,7 +189,7 @@ export default function Assessment() {
         >
           <div className="page_nav">
             <h3>Medical Assessment</h3>
-            <p>helo</p>
+            <p>Welcome</p>
           </div>
 
           {selectedMode === null ? (
@@ -207,6 +254,41 @@ export default function Assessment() {
                   </div>
                 ) : null}
               </div>
+
+                            {voiceFollowUpData && (
+                <section style={{ marginTop: "30px" }}>
+                  <div className="voice_mode_text">
+                    <p>{voiceFollowUpData}</p>
+                  </div>
+                  <div className="voice_action_wrapper" style={{ marginTop: "20px", maxWidth: "400px" }}>
+                    <textarea
+                      placeholder="Explain better..."
+                      value={voiceTextInput1}
+                      onChange={(e) => setVoiceTextInput1(e.target.value)}
+                      style={{
+                        width: "100%",
+                        background: "transparent",
+                        border: "1px solid rgba(255,255,255,0.08)",
+                        color: "white",
+                        padding: "10px",
+                        borderRadius: "5px",
+                        minHeight: "100px",
+                        marginBottom: "10px"
+                      }}
+                    />
+                    <button onClick={sendVoiceExplainedTextToBackend}>Submit</button>
+                  </div>
+                </section>
+              )}
+              
+              {/* ========== NEW: Voice report section ========== */}
+              {voiceReportData && (
+                <div className="voice_mode_text" style={{ marginTop: "20px" }}>
+                  <h4>Generated Report:</h4>
+                  <p>{voiceReportData}</p>
+                </div>
+              )}
+
             </div>
           ) : (
             <div className="text_mode">
@@ -223,20 +305,24 @@ export default function Assessment() {
                 <button onClick={sendTextToBackend}>Submit</button>
               </div>
               {followUpData && (
-                <>
+                <section>
                   <div className="text_mode_content">
                     <p>{followUpData}</p>
                   </div>
                   <div className="text_input">
                     <textarea
                       placeholder="Explain better                                                                                                                                                                                                                                                                   ..."
-                      value={textInput}
-                      onChange={(e) => setTextInput(e.target.value)}
+                      value={textInput1}
+                      onChange={(e) => setTextInput1(e.target.value)}
                     />
                     <button onClick={sendExplainedTextToBackend}>Submit</button>
                   </div>
-                </>
+                </section>
               )}
+              {reportData && (
+                <div className="text_mode_content" style={{ marginTop: "20px" }}>
+                  <h4>Generated Report:</h4>
+                  <p>{reportData}</p></div>)}
             </div>
           )}
         </motion.div>
