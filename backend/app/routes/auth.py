@@ -2,8 +2,7 @@ import sqlite3
 from flask import request, jsonify, Blueprint
 from app.database.database import get_db_connection
 import hashlib
-
-from dbm import sqlite3
+import sqlite3
 
 auth_bp = Blueprint('auth', __name__, url_prefix='/api/v1/auth')
 
