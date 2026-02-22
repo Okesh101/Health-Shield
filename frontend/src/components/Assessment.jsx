@@ -13,8 +13,8 @@ export default function Assessment() {
   const [transcribedText, setTranscribedText] = useState(""); 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
-
-  // 🔹 Click handlers for cards
+  const [textInput, setTextInput] = useState("");
+  const [followUpData, setFollowUpData] = useState("");
   const handleVoice = () => setSelectedMode("voice");
   const handleText = () => setSelectedMode("text");
 
@@ -73,6 +73,40 @@ export default function Assessment() {
       alert("Audio sent successfully!");
     } catch (error) {
       console.error("Upload error:", error);
+    }
+  };
+
+  // Send text input to the backend
+  const sendTextToBackend = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/api/v1/follow-up", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "userLog": textInput }),
+      });
+      const data = await res.json();
+      setFollowUpData(data.response);
+    } catch (error) {
+      console.log("Text submission error:", error);
+    }
+  };
+
+  // Send the second explained text input to the backend
+  const sendExplainedTextToBackend = async () => {
+    try {
+      const res = await fetch("http://127.0.0.1:5000/api/v1/generate-prediction", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ "userLog": textInput }),
+      });
+      const data = await res.json();
+      setFollowUpData(data);
+    } catch (error) {
+      console.log("Text submission error:", error);
     }
   };
 
@@ -175,9 +209,28 @@ export default function Assessment() {
                 <p>Type your symptoms in the text box below.</p>
               </div>
               <div className="text_input">
-                <textarea placeholder="Describe your symptoms here..." />
-                <button>Submit</button>
+                <textarea
+                  placeholder="Describe your symptoms here..."
+                  value={textInput}
+                  onChange={(e) => setTextInput(e.target.value)}
+                />
+                <button onClick={sendTextToBackend}>Submit</button>
               </div>
+              {followUpData && (
+                <>
+                  <div className="text_mode_content">
+                    <p>{followUpData}</p>
+                  </div>
+                  <div className="text_input">
+                    <textarea
+                      placeholder="Explain better                                                                                                                                                                                                                                                                   ..."
+                      value={textInput}
+                      onChange={(e) => setTextInput(e.target.value)}
+                    />
+                    <button onClick={sendExplainedTextToBackend}>Submit</button>
+                  </div>
+                </>
+              )}
             </div>
           )}
         </motion.div>
