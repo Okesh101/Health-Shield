@@ -23,6 +23,18 @@ export default function Login() {
 
   const navigate = useNavigate();
 
+ 
+   const resetForm = () => {
+  // Clear form data
+  setFormData({
+    fullName: "",
+    email: "",
+    password: ""
+  });
+  // Clear all errors
+  setErrors({});
+}
+
   const handleSignUp = async (e) => {
     let isValid = true;
     e.preventDefault();
@@ -57,6 +69,7 @@ export default function Login() {
       const data = await res.json();
       console.log(data);
       setCurrentTab("login");
+      
     }
   };
   const handleLogIn = async (e) => {
@@ -91,6 +104,8 @@ export default function Login() {
       console.log(data);
     }
   };
+
+  
 
   return (
     <div className="wrapper">
@@ -152,7 +167,7 @@ export default function Login() {
                     <p>Already have an account?</p>
                     <button
                       type="button"
-                      onClick={() => setCurrentTab("login")}
+                      onClick={() => {setCurrentTab("login"); resetForm()}}
                     >
                       Log In
                     </button>
@@ -200,7 +215,7 @@ export default function Login() {
                     <p>Don't have an account?</p>
                     <button
                       type="button"
-                      onClick={() => setCurrentTab("signup")}
+                      onClick={() => {setCurrentTab("signup"); resetForm()}}
                     >
                       Sign Up
                     </button>
