@@ -88,7 +88,7 @@ export default function Assessment() {
 
   const sendVoiceTranscribeTextToBackend = async (text) => {
     try{
-      const res = await fetch("http://127.0.0.1:5000/api/v1/follow-up", {
+      const res = await fetch("http://127.0.0.1:5000/api/v1/chat/follow-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +105,7 @@ export default function Assessment() {
    const sendVoiceExplainedTextToBackend = async () => {
     try {
       const res = await fetch(
-        "http://127.0.0.1:5000/api/v1/generate-prediction",
+        "http://127.0.0.1:5000/api/v1/chat/generate-prediction",
         {
           method: "POST",
           headers: {
