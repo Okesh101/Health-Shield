@@ -35,4 +35,7 @@ body {
       font-size: 14px;
       color: #93c5fd;
     }
+    @media (max-width: 768px) {
+      margin-bottom: 38px;
+    }
   }
