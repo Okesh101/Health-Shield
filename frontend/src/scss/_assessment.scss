@@ -104,83 +104,29 @@
       }
     }
   }
+  
   .voice_mode {
     position: relative;
+    min-height: 400px;
+    
     @media (max-width: 768px) {
-      min-height: auto;
       padding-bottom: 20px;
     }
+
     .voice_mode_text {
       background: rgba(212, 210, 210, 0.144);
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 20px;
       border-radius: 10px;
       max-width: 400px;
+      
       @media (max-width: 768px) {
         max-width: 100%;
-        margin-bottom: 20px;
       }
+      
       p {
         margin-top: 5px;
       }
-    }
-    .voice_action_wrapper{
-        margin-top: 65px;
-      background: rgba(212, 210, 210, 0.144);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 300px;
-      position: absolute;
-      right: 0;
-      @media (max-width: 768px) {
-        position: static;
-        max-width: 100%;
-        margin-top: 20px;
-      }
-      .voice_action {
-      display: flex;
-      align-items: center;
-      // justify-content: flex-end;
-      justify-content: space-between;
-    
-
-      @media (max-width: 480px) {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-      }
-      .icon {
-        width: 40px;
-        height: 40px;
-        background: radial-gradient(
-          circle at center,
-          #1e3a8a 0%,
-          #1e40af 40%,
-          #0f172a 75%
-        );
-        padding: 6px;
-        border-radius: 6px;
-        @media (max-width: 480px) {
-          width: 35px;
-          height: 35px;
-        }
-      }
-      button {
-        padding: 10px 30px;
-        background-color: transparent;
-        border: 2px solid rgba(209, 191, 191, 0.582);
-        border-radius: 5px;
-        color: white;
-        font-size: 15px;
-        cursor: pointer;
-        @media (max-width: 480px) {
-          width: 100%;
-          padding: 12px 20px;
-        }
-      }
-    }
     }
 
     section {
@@ -197,7 +143,6 @@
         margin-top: 20px;
       }
       
-      // Voice follow-up text content (like text_mode_content)
       .voice_mode_text {
         position: relative;
         max-width: 400px;
@@ -224,7 +169,8 @@
           color: #ffffff;
         }
       }
-        .voice_action_wrapper {
+      
+      .voice_action_wrapper {
         position: relative;
         max-width: 390px;
         margin-left: auto;
@@ -240,17 +186,19 @@
           margin-left: 0;
         }
         
-        // Style for textarea in voice section (like text_input textarea)
         textarea {
           background: transparent;
-          border: none;
+          border: 1px solid rgba(255, 255, 255, 0.08);
           color: white;
           font-size: 14px;
           min-height: 12vh;
           resize: vertical;
           outline: none;
           width: 100%;
+          padding: 10px;
+          border-radius: 5px;
           font-family: inherit;
+          margin-bottom: 10px;
           
           @media (max-width: 480px) {
             min-height: 10vh;
@@ -262,7 +210,6 @@
           }
         }
         
-        // Style for button in voice section (like text_input button)
         button {
           padding: 6px 30px;
           background-color: transparent;
@@ -287,19 +234,121 @@
         }
       }
     }
-    
-    // ========== NEW: VOICE REPORT SECTION (styled like text_mode_content) ==========
-    .voice_report {
+
+    // Initial voice action wrapper (before transcription)
+    .voice_action_wrapper {
+      position: relative;
+      max-width: 390px;
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
       background: rgba(212, 210, 210, 0.144);
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 20px;
       border-radius: 10px;
-      max-width: 400px;
-      margin-top: 20px;
+      margin-top: 30px;
+      
+      @media (max-width: 992px) {
+        margin-top: 60px;
+      }
       
       @media (max-width: 768px) {
         max-width: 100%;
+        margin-left: 0;
+        margin-top: 20px;
       }
+      
+      .voice_action {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        
+        .icon {
+          width: 40px;
+          height: 40px;
+          background: radial-gradient(
+            circle at center,
+            #1e3a8a 0%,
+            #1e40af 40%,
+            #0f172a 75%
+          );
+          padding: 6px;
+          border-radius: 6px;
+          
+          @media (max-width: 480px) {
+            width: 35px;
+            height: 35px;
+          }
+        }
+        
+        button {
+          padding: 10px 30px;
+          background-color: transparent;
+          border: 2px solid rgba(209, 191, 191, 0.582);
+          border-radius: 5px;
+          color: white;
+          font-size: 15px;
+          cursor: pointer;
+          width: fit-content;
+          
+          @media (max-width: 480px) {
+            width: 100%;
+            padding: 12px 20px;
+          }
+        }
+      }
+
+      // Transcribed text styles
+      h4 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #60a5fa;
+      }
+      
+      p {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      audio {
+        width: 100%;
+        margin-top: 10px;
+        
+        &::-webkit-media-controls-panel {
+          background: rgba(37, 99, 235, 0.2);
+        }
+        
+        &::-webkit-media-controls-play-button,
+        &::-webkit-media-controls-mute-button {
+          background-color: rgba(37, 99, 235, 0.5);
+          border-radius: 50%;
+        }
+        
+        &::-webkit-media-controls-current-time-display,
+        &::-webkit-media-controls-time-remaining-display {
+          color: white;
+        }
+        
+        &::-webkit-media-controls-timeline {
+          background-color: rgba(255, 255, 255, 0.2);
+          border-radius: 10px;
+          height: 5px;
+        }
+        
+        &::-webkit-media-controls-volume-slider {
+          background-color: rgba(37, 99, 235, 0.3);
+          border-radius: 10px;
+          height: 5px;
+        }
+      }
+    }
+
+    // Voice report section
+    .voice_mode_text:last-child {
+      margin-top: 20px;
       
       h4 {
         font-size: 18px;
@@ -315,68 +364,9 @@
         line-height: 1.6;
       }
     }
-    
-    // Style for transcribed text display
-    .transcribed_text {
-      background: rgba(212, 210, 210, 0.144);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      margin-top: 20px;
-      
-      @media (max-width: 768px) {
-        max-width: 100%;
-      }
-      
-      h4 {
-        font-size: 16px;
-        font-weight: 600;
-        margin-bottom: 10px;
-        color: #60a5fa;
-      }
-      
-      p {
-        font-size: 14px;
-        color: rgba(255, 255, 255, 0.9);
-        line-height: 1.6;
-      }
-    }
-    
-    // Style for audio player
-    audio {
-      width: 100%;
-      margin-top: 10px;
-      
-      &::-webkit-media-controls-panel {
-        background: rgba(37, 99, 235, 0.2);
-      }
-      
-      &::-webkit-media-controls-play-button,
-      &::-webkit-media-controls-mute-button {
-        background-color: rgba(37, 99, 235, 0.5);
-        border-radius: 50%;
-      }
-      
-      &::-webkit-media-controls-current-time-display,
-      &::-webkit-media-controls-time-remaining-display {
-        color: white;
-      }
-      
-      &::-webkit-media-controls-timeline {
-        background-color: rgba(255, 255, 255, 0.2);
-        border-radius: 10px;
-        height: 5px;
-      }
-      
-      &::-webkit-media-controls-volume-slider {
-        background-color: rgba(37, 99, 235, 0.3);
-        border-radius: 10px;
-        height: 5px;
-      }
-    }
   }
-.text_mode {
+
+  .text_mode {
     position: relative;
     min-height: 400px;
     
@@ -385,7 +375,7 @@
     }
     
     section {
-       margin-top: 30px;
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
       gap: 20px;
