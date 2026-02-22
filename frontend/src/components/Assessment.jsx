@@ -4,7 +4,7 @@ import RecorderIcon from "../assets/recorderIcon.png";
 import { FiMic, FiFileText } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 
-const BACKEND_API = "https://health-shield.onrender.com"
+const BACKEND_API = "https://health-shield-v1.onrender.com"
 
 export default function Assessment() {
   const [selectedMode, setSelectedMode] = useState(null);

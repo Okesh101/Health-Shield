@@ -44,4 +44,4 @@ CMD ["gunicorn", \
     "--threads", "2", \
     "--preload", \
     "--timeout", "130", \
-    "app:create_app()"]
+    "main:create_app()"]
