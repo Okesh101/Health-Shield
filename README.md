@@ -47,7 +47,7 @@ AI-Health-Partner/
 
 ### Frontend
 - **Location:** `frontend/`
-- **Tech:** React, Vite, Sass
+- **Tech:** React, Vite, Sass, Framer-motion
 - **Features:**
   - User dashboard, login, health assessment
   - Responsive UI
@@ -89,8 +89,8 @@ AI-Health-Partner/
 	```
 4. Run on device/emulator:
 	```bash
-	npm run android   # For Android
-	npm run ios       # For iOS
+	npm run android   # For Android(UI not a working Application)
+	npm run ios       # For iOS(UI not a working Application)
 	npm run web       # For web
 	```
 
@@ -107,8 +107,51 @@ AI-Health-Partner/
 - npm 9+
 - Docker (optional)
 
-## License
-MIT
+#CAVISTA 2026 HACKATHON DASHBOARD
 
----
-For more details, see subfolder READMEs and code comments.
+![](https://github.com/Ebenezer080925/Cavista2026-Hacktahon-Heathshield-Dashboard/blob/main/Screenshot%202026-02-22%20074258.png)
+
+#                                                HEALTH SHIELD DASHBOARD REPORT
+##    Empowering Early Detection Through Predictive Analytics
+##   Introduction
+     The Health Shield Dashboard is an automated disease-symptom intelligence system designed to support early detection and awareness. This solution 
+focuses on individuals who are already familiar with a disease they frequently experience but may not clearly remember all associated symptoms.
+    The dashboard provides an interactive, user-friendly environment where selecting any disease dynamically updates visual elements to assist in
+symptom verification and confirmation.
+
+##           Dashboard Objective
+###  The primary goal of this automation system is to:
+    -Improve early disease awareness
+    -Help users confirm symptoms quickly
+    -Provide visual identification support
+    -Enable gender-based disease pattern analysis
+    -Present structured symptom information for deeper verification
+This system currently supports 20 distinct diseases, all integrated into an interactive analytics framework.
+ ##   Automation Functionality
+### The dashboard is fully dynamic and automated:
+### Disease Selection Automation
+
+When a user selects a disease (from the bar chart, slicer, or table):
+    The corresponding disease image automatically appears.
+    The Top 3 most common symptoms are instantly displayed.
+    The detailed symptom table updates to show additional symptoms for deeper confirmation.
+This allows users to:
+   Quickly compare their physical condition with the disease image.
+   Verify the most critical symptoms immediately.
+   Review additional symptoms in the table for further validation.
+
+## Key Insights
+-The system currently automates detection across 20 distinct diseases.
+-Male individuals appear to have a higher prevalence rate across the dataset.
+-The dynamic filtering allows real-time disease intelligence.
+-The integration of image recognition with symptom ranking improves user confidence in early detection.
+
+## Predictive Analytics Value
+
+### This dashboard goes beyond static reporting by:
+    -Automating disease-symptom mapping
+    -Enabling interactive filtering
+    -Supporting drill-down analysis
+    -Structuring medical information into actionable insights
+
+It acts as a lightweight decision-support system that enhances personal health awareness.
