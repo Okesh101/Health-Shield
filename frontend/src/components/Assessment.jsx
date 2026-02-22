@@ -14,6 +14,7 @@ export default function Assessment() {
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const [textInput, setTextInput] = useState("");
+  const [reportData, setReportData] = useState("")
   const [followUpData, setFollowUpData] = useState("");
   const handleVoice = () => setSelectedMode("voice");
   const handleText = () => setSelectedMode("text");
@@ -103,7 +104,7 @@ export default function Assessment() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ userLog: textInput }),
+          body: JSON.stringify({ userLog: reportData }),
         }
       );
       const data = await res.json();
@@ -230,8 +231,8 @@ export default function Assessment() {
                   <div className="text_input">
                     <textarea
                       placeholder="Explain better                                                                                                                                                                                                                                                                   ..."
-                      value={textInput}
-                      onChange={(e) => setTextInput(e.target.value)}
+                      value={reportData}
+                      onChange={(e) => setReportData(e.target.value)}
                     />
                     <button onClick={sendExplainedTextToBackend}>Submit</button>
                   </div>
