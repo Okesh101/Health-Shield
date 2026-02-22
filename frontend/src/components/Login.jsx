@@ -23,6 +23,18 @@ export default function Login() {
 
   const navigate = useNavigate();
 
+ 
+   const resetForm = () => {
+  // Clear form data
+  setFormData({
+    fullName: "",
+    email: "",
+    password: ""
+  });
+  // Clear all errors
+  setErrors({});
+}
+
   const handleSignUp = async (e) => {
     let isValid = true;
     e.preventDefault();
@@ -30,6 +42,8 @@ export default function Login() {
     if (!formData.fullName) {
       setErrors((prev) => ({ ...prev, fullName: "Full name is required" }));
       isValid = false;
+    } else {
+      setErrors((prev) => ({ ...prev, fullName: "" }));
     }
     if (!formData.email) {
       setErrors((prev) => ({ ...prev, email: "Email is required" }));
@@ -40,10 +54,14 @@ export default function Login() {
         email: "Please enter a valid email address",
       }));
       isValid = false;
+    } else{
+      setErrors((prev) => ({ ...prev, email: "" }));
     }
     if (!formData.password) {
       setErrors((prev) => ({ ...prev, password: "Password is required" }));
       isValid = false;
+    } else{
+      setErrors((prev) => ({ ...prev, password: "" }));
     }
 
     if (isValid) {
@@ -57,6 +75,7 @@ export default function Login() {
       const data = await res.json();
       console.log(data);
       setCurrentTab("login");
+      
     }
   };
   const handleLogIn = async (e) => {
@@ -72,10 +91,14 @@ export default function Login() {
         email: "Please enter a valid email address",
       }));
       isValid = false;
+    } else {
+      setErrors((prev) => ({ ...prev, email: "" }));
     }
     if (!formData.password) {
       setErrors((prev) => ({ ...prev, password: "Password is required" }));
       isValid = false;
+    } else {
+      setErrors((prev) => ({ ...prev, password: "" }));
     }
 
     if (isValid) {
@@ -91,6 +114,8 @@ export default function Login() {
       console.log(data);
     }
   };
+
+  
 
   return (
     <div className="wrapper">
@@ -152,7 +177,7 @@ export default function Login() {
                     <p>Already have an account?</p>
                     <button
                       type="button"
-                      onClick={() => setCurrentTab("login")}
+                      onClick={() => {setCurrentTab("login"); resetForm()}}
                     >
                       Log In
                     </button>
@@ -200,7 +225,7 @@ export default function Login() {
                     <p>Don't have an account?</p>
                     <button
                       type="button"
-                      onClick={() => setCurrentTab("signup")}
+                      onClick={() => {setCurrentTab("signup"); resetForm()}}
                     >
                       Sign Up
                     </button>
