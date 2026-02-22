@@ -124,12 +124,8 @@
         margin-top: 5px;
       }
     }
-    .voice_action {
-      display: flex;
-      align-items: center;
-      // justify-content: flex-end;
-      justify-content: space-between;
-      margin-top: 65px;
+    .voice_action_wrapper{
+        margin-top: 65px;
       background: rgba(212, 210, 210, 0.144);
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 20px;
@@ -143,6 +139,12 @@
         max-width: 100%;
         margin-top: 20px;
       }
+      .voice_action {
+      display: flex;
+      align-items: center;
+      // justify-content: flex-end;
+      justify-content: space-between;
+    
 
       @media (max-width: 480px) {
         flex-direction: column;
@@ -178,6 +180,7 @@
           padding: 12px 20px;
         }
       }
+    }
     }
   }
   .text_mode {

@@ -10,6 +10,7 @@ export default function Assessment() {
   // 🔹 Voice recording state
   const [isRecording, setIsRecording] = useState(false);
   const [audioURL, setAudioURL] = useState(null);
+  const [transcribedText, setTranscribedText] = useState(""); 
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
 
@@ -68,6 +69,7 @@ export default function Assessment() {
 
       const data = await response.json();
       console.log("Transcribed:", data.transcribed_text);
+      setTranscribedText(data.transcribed_text);
       alert("Audio sent successfully!");
     } catch (error) {
       console.error("Upload error:", error);
@@ -133,8 +135,23 @@ export default function Assessment() {
                 <p>Start speaking to describe your symptoms.</p>
               </div>
 
-              <div className="voice_action">
-                {/* Recorder Icon */}
+              <div className="voice_action_wrapper">
+                 {/* 🎧 Audio Playback */}
+              {transcribedText  && (
+                <div style={{ marginTop: "20px" }}>
+                  <h4>Transcribed Text:</h4>
+                  <p>{transcribedText}</p>
+                </div>
+              )}
+              {audioURL ? (
+                <div style={{ marginTop: "20px" }}>
+                  {transcribedText ? (null) : <audio controls src={audioURL}></audio>}
+                </div>
+              ): null}
+
+             {!transcribedText ?(
+               <div className="voice_action">
+                  {/* Recorder Icon */}
                 <FiMic className="icon" />
 
                 {/* 🎤 Recording Buttons */}
@@ -146,21 +163,10 @@ export default function Assessment() {
                   )}
                 </div>
               </div>
+             ): ( null)}
+              </div>
 
-              {/* 🎧 Audio Playback */}
-              {/* {audioURL && (
-              
-            )} */}
-              {data?.transcribed_text && audioURL ? (
-                <div style={{ marginTop: "20px" }}>
-                  <h4>Transcribed Text:</h4>
-                  <p>{data.transcribed_text}</p>
-                </div>
-              ) : (
-                <div style={{ marginTop: "20px" }}>
-                  <audio controls src={audioURL}></audio>
-                </div>
-              )}
+             
             </div>
           ) : (
             <div className="text_mode">
