@@ -1,84 +1,48 @@
 
 
-import {View, Text, Image, TextInput, TouchableOpacity, Alert, Pressable, ScrollView} from 'react-native';
+import {View, Text, TextInput, Pressable} from 'react-native';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Input from './component/input';
-import Button from './component/button';
-import Post from './component/post';
+import { useState } from 'react';
+import { router } from 'expo-router';
+
+
+
 
 export default function index (){
+
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
   return(
-    // <SafeAreaView style = {{
-    //   paddingHorizontal : 15, 
-      
-    // }}> ///safearea opening tag for the facebook sin in page.
+    <SafeAreaView style = {{paddingHorizontal : 15, backgroundColor: "#011128", flex:1,}}> 
 
-      <SafeAreaView
-      style={{
-        flex: 1,
-        paddingHorizontal: 15,
-        backgroundColor: '#f8f8f8', // fixed color
-      }}
-    >
-      <ScrollView contentContainerStyle={{paddingBottom: 30,}} showsVerticalScrollIndicator={false} >
+    <View style={{ padding: 20, borderRadius: 10, marginTop: 50,}}>
 
-          <View style={{gap : 10}}>
-          <Post title={'Why is the earth round???'} body={'The earth is round beause that is how the creator made it'} image={require("../assets/images/earth.jpg")}/>
-          <Post title={'Why does cow produce milk???'} body={'The earth is round beause that is how the creator made it'} image={require("../assets/images/earth.jpg")}/>
-          <Post title={'Why does cow produce milk???'} body={'The earth is round beause that is how the creator made it'} image={require("../assets/images/earth.jpg")}/>
-          <Post title={'Why does cow produce milk???'} body={'The earth is round beause that is how the creator made it'} image={require("../assets/images/earth.jpg")}/>
-          <Post title={'Why does cow produce milk???'} body={'The earth is round beause that is how the creator made it'} image={require("../assets/images/earth.jpg")}/>
-          <Post title={'Why does cow produce milk???'} body={'The earth is round beause that is how the creator made it'} image={require("../assets/images/earth.jpg")}/>
-          </View>
-         
+      <Text style={{fontSize: 25, fontWeight: "700",  marginTop: 4, marginBottom: 10, color:"white"}}> Sign Up </Text>
 
+    
+        <View  style={{gap:25, marginTop:10,}}>
+        {/* <Text style={{fontSize:30, paddingLeft:10, fontFamily:"Roboto", fontWeight:650, color:"#011128"}}>Sign In </Text> */}
+        <TextInput placeholder='Full Name'  placeholderTextColor={"rgba(255, 255, 255, 0.4)"}  keyboardType='text' style = {{borderWidth :0.5, borderRadius:10, paddingHorizontal:10,height:50, backgroundColor: "rgba(255, 255, 255, 0.05)"}}/>
+        <TextInput placeholder='Email'  placeholderTextColor={"rgba(255, 255, 255, 0.4)"}   keyboardType='email-address' value = {email} onChangeText={setEmail} autoCapitalize='none' style = {{borderWidth : 0.5, borderRadius:10, height:50, paddingHorizontal:10, backgroundColor: "rgba(255, 255, 255, 0.05)"}}/>
+        <TextInput placeholder='Password' placeholderTextColor={"rgba(255, 255, 255, 0.4)"}  value={password} onChangeText={setPassword} secureTextEntry style = {{borderWidth :0.5, borderRadius:10, height:50, paddingHorizontal:10, backgroundColor: "rgba(255, 255, 255, 0.05)"}}/>
 
-
-
-
-        {/* for reusable component */}
-        <View style={{ marginTop: 40, gap: 10 }}>
-          <Input label={'Fullname '} placeholder={'Enter your fullname'} />
-          <Input keyboardType={'email-address'} label={'Email '} placeholder={'Enter your email'} />
-          <Input keyboardType={'numeric'} label={'Phone nuber'} placeholder={'Enter your Phone No'} />
-          <Input secureTextEntry={true} label={'Passwword'} placeholder={'Enter your Password'} />
         </View>
 
         <View style={{ marginTop: 20 }}>
-          <Button title={'Submit'} backgroundColor={'#007AFF'} />
-          <Button title={'Sign in'} backgroundColor={'#28a745'} />
-          <Button title={'Cancel'} backgroundColor={'#dc3545'} />
+          <Pressable style={{backgroundColor:'#007AFF', padding:15, borderRadius:10}} onPress={() => router.push("./SignIn")}>
+            <Text style={{color:'white', textAlign:'center', fontWeight:'bold'}}>Sign Up</Text>
+          </Pressable>
+        </View>
+
+        <View>
+          <Text style={{color:"white", marginTop:40, textAlign:"center", fontSize:16}}>Ai-Powered Early Health Detection</Text>
         </View>
 
 
+    </View>
 
-        {/* // For facebook continouation */}
-        {/* <Text style = {{alignSelf : 'center', paddingTop : 50, fontSize : 20, color : 'gray'}}>English (US)</Text>
-        <Image style = {{width : 100, height : 100, alignSelf : 'center', marginTop : 50}} source={require('../assets/images/Facebook.png')}/>
-
-        <TextInput placeholder='Mobile number or email' placeholderTextColor='#606770' style = {{ fontSize : 14, borderWidth : 1, borderColor : '#CCC', borderRadius : 15,height : 60, paddingHorizontal: 10, marginTop : 60 }}/>
-
-        <TextInput placeholder='Password' placeholderTextColor='#606770' style = {{fontSize : 14, borderWidth : 1, borderColor : '#CCC', borderRadius : 15,height : 60, paddingHorizontal: 10, marginTop : 20 }}/>
-
-        <Pressable style = {{ backgroundColor : '#1877F2', marginTop : 20, height : 50, borderRadius : 40}}>
-          <Text style = {{color : '#FFF', alignSelf : 'center', paddingTop : 10, fontSize : 20}}>Log in</Text>
-        </Pressable>
-
-        <Text style = {{alignSelf : 'center', marginTop : 10, fontSize : 20, color : '#606770'}}>Forgot password?</Text>
-
-        <Pressable style = {{ borderWidth : 1, marginTop : 100, height : 50, borderRadius : 40, borderColor : '#1877F2' }}>
-          <Text style = {{alignSelf : 'center', paddingTop : 10, fontSize : 20, color : '#1877F2' }}> Create new account </Text>
-        </Pressable>
-
-        <Image style = {{width : 100, height : 100, alignSelf : 'center', marginBottom : 10}} source={require('../assets/images/meta.png')}/>
-        */}
-
-
-
-
-
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
   );
 }
