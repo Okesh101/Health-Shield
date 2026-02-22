@@ -7,6 +7,11 @@
     width: 100%;
     gap: 30px;
     margin-top: 20px;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0 15px;
+    }
     .card {
       border-radius: 20px;
       padding: 30px;
@@ -17,6 +22,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      @media (max-width: 480px) {
+        padding: 20px;
+      }
+
       .iconWrapper {
         position: relative;
         width: 140px;
@@ -37,6 +46,15 @@
           inset 0 0 25px rgba(255, 255, 255, 0.05);
 
         transition: all 0.4s ease;
+        @media (max-width: 480px) {
+          width: 100px;
+          height: 100px;
+
+          &::before {
+            width: 120px;
+            height: 120px;
+          }
+        }
 
         &::before {
           content: "";
@@ -49,7 +67,6 @@
             rgba(37, 99, 235, 0.3) 0%,
             transparent 70%
           );
-          animation: pulse 2.5s infinite ease-in-out;
           z-index: 0;
         }
 
@@ -57,6 +74,9 @@
           font-size: 50px;
           color: #ffffff;
           z-index: 2;
+          @media (max-width: 480px) {
+            font-size: 35px;
+          }
         }
 
         &:hover {
@@ -69,23 +89,37 @@
         font-size: 28px;
         font-weight: 600;
         margin-bottom: 15px;
+        @media (max-width: 480px) {
+          font-size: 22px;
+        }
       }
 
       p {
         font-size: 15px;
         color: rgba(255, 255, 255, 0.7);
         margin-bottom: 25px;
+        @media (max-width: 480px) {
+          font-size: 14px;
+        }
       }
     }
   }
   .voice_mode {
     position: relative;
+    @media (max-width: 768px) {
+      min-height: auto;
+      padding-bottom: 20px;
+    }
     .voice_mode_text {
       background: rgba(212, 210, 210, 0.144);
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 20px;
       border-radius: 10px;
       max-width: 400px;
+      @media (max-width: 768px) {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
       p {
         margin-top: 5px;
       }
@@ -104,6 +138,17 @@
       max-width: 300px;
       position: absolute;
       right: 0;
+      @media (max-width: 768px) {
+        position: static;
+        max-width: 100%;
+        margin-top: 20px;
+      }
+
+      @media (max-width: 480px) {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
       .icon {
         width: 40px;
         height: 40px;
@@ -115,8 +160,12 @@
         );
         padding: 6px;
         border-radius: 6px;
+        @media (max-width: 480px) {
+          width: 35px;
+          height: 35px;
+        }
       }
-      button{
+      button {
         padding: 10px 30px;
         background-color: transparent;
         border: 2px solid rgba(209, 191, 191, 0.582);
@@ -124,6 +173,76 @@
         color: white;
         font-size: 15px;
         cursor: pointer;
+        @media (max-width: 480px) {
+          width: 100%;
+          padding: 12px 20px;
+        }
+      }
+    }
+  }
+  .text_mode {
+    position: relative;
+    @media (max-width: 768px) {
+      // min-height: auto;
+      padding-bottom: 20px;
+    }
+    .text_mode_content {
+      background: rgba(212, 210, 210, 0.144);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      @media (max-width: 768px) {
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+
+      p {
+        margin-top: 5px;
+      }
+    }
+    .text_input {
+      display: flex;
+      flex-direction: column;
+      margin-top: 50px;
+      background: rgba(212, 210, 210, 0.144);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 390px;
+      position: absolute;
+      right: 0;
+      @media (max-width: 768px) {
+        position: static;
+        max-width: 100%;
+        margin-top: 20px;
+      }
+      textarea {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 14px;
+        min-height: 24vh;
+        resize: vertical;
+        outline: none;
+        @media (max-width: 480px) {
+          min-height: 20vh;
+          font-size: 13px;
+        }
+      }
+      button {
+        padding: 10px 30px;
+        background-color: transparent;
+        border: 2px solid rgba(209, 191, 191, 0.582);
+        border-radius: 5px;
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        @media (max-width: 480px) {
+          width: 100%;
+          padding: 12px 20px;
+        }
       }
     }
   }
