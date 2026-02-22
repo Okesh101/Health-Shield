@@ -79,7 +79,7 @@ export default function Assessment() {
   // Send text input to the backend
   const sendTextToBackend = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/v1/follow-up", {
+      const res = await fetch("http://127.0.0.1:5000/api/v1/chat/follow-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export default function Assessment() {
   const sendExplainedTextToBackend = async () => {
     try {
       const res = await fetch(
-        "http://127.0.0.1:5000/api/v1/generate-prediction",
+        "http://127.0.0.1:5000/api/v1/chat/generate-prediction",
         {
           method: "POST",
           headers: {
@@ -107,7 +107,8 @@ export default function Assessment() {
         }
       );
       const data = await res.json();
-      setFollowUpData(data);
+      setFollowUpData(data.report);
+      console.log(data.report);
     } catch (error) {
       console.log("Text submission error:", error);
     }

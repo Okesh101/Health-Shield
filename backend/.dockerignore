@@ -1,0 +1,92 @@
+# -----------------------------
+# Python cache / compiled files
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# -----------------------------
+# Virtual environments
+# -----------------------------
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# -----------------------------
+# Environment variables (CRITICAL)
+# -----------------------------
+.env
+.env.*
+*.env
+
+# -----------------------------
+# Git
+# -----------------------------
+.git/
+.gitignore
+
+# -----------------------------
+# OS / Editor files
+# -----------------------------
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.idea/
+.vscode/
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+logs/
+
+# -----------------------------
+# Testing / Coverage
+# -----------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+
+# -----------------------------
+# SQLite local database
+# (You DO NOT want local DB in image)
+# -----------------------------
+*.db
+*.sqlite3
+health_ai.db
+activate
+installpy
+run
+
+# -----------------------------
+# Temporary uploads
+# -----------------------------
+uploads/
+tmp/
+temp/
+
+# -----------------------------
+# Model training artifacts (optional)
+# If your image loads them at runtime,
+# REMOVE this block.
+# -----------------------------
+notebooks/
+datasets/
+raw_data/
+*.ipynb
+
+# -----------------------------
+# Node (if frontend is separate)
+# -----------------------------
+node_modules/
+dist/
+build/
+
+# -----------------------------
+# Docker files
+# -----------------------------
+docker-compose.override.yml

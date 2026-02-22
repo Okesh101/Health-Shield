@@ -28,16 +28,18 @@ def init_db():
     ''')
 
     # Create Assessment table (linking to user)
-    conn.execute('''
-        CREATE TABLE IF NOT EXISTS assessments (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            transcript TEXT,
-            prediction_label TEXT,
-            risk_score REAL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(user_id) REFERENCES users(id)
-        )
-    ''')
+    # conn.execute('''
+    #     CREATE TABLE IF NOT EXISTS assessments (
+    #         id INTEGER PRIMARY KEY AUTOINCREMENT,
+    #         user_id INTEGER NOT NULL,
+    #         transcript TEXT NOT NULL,
+    #         extracted_symptoms TEXT,
+    #         prediction_label TEXT,
+    #         model_confidence REAL,
+    #         report TEXT,
+    #         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    #         FOREIGN KEY(user_id) REFERENCES users(id)
+    #     )
+    # ''')
     conn.commit()
     conn.close()
