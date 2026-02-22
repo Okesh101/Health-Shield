@@ -8,9 +8,13 @@ import numpy as np
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-model = joblib.load("trained_ml/disease_model.pkl")
-encoder = joblib.load("trained_ml/label_encoder.pkl")
-symptom_columns = joblib.load("trained_ml/symptom_columns.pkl")
+BASE_DIR = os.path.dirname(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))))
+MODEL_DIR = os.path.join(BASE_DIR, "app", "models", "trained_ml")
+
+model = joblib.load(os.path.join(MODEL_DIR, "disease_model.pkl"))
+encoder = joblib.load(os.path.join(MODEL_DIR, "label_encoder.pkl"))
+symptom_columns = joblib.load(os.path.join(MODEL_DIR, "symptom_columns.pkl"))
 
 follow_up_prompt = """
 You are a clinical intake assistant in an AI-powered health monitoring system.
