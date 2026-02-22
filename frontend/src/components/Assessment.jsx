@@ -4,6 +4,8 @@ import RecorderIcon from "../assets/recorderIcon.png";
 import { FiMic, FiFileText } from "react-icons/fi";
 import { AnimatePresence, motion } from "framer-motion";
 
+const BACKEND_API = "https://health-shield.onrender.com"
+
 export default function Assessment() {
   const [selectedMode, setSelectedMode] = useState(null);
 
@@ -69,7 +71,7 @@ export default function Assessment() {
     formData.append("audio", audioBlob, "recording.webm");
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/v1/transcribe", {
+      const response = await fetch(`${BACKEND_API}/api/v1/transcribe`, {
         method: "POST",
         body: formData,
       });
@@ -88,7 +90,7 @@ export default function Assessment() {
 
   const sendVoiceTranscribeTextToBackend = async (text) => {
     try{
-      const res = await fetch("http://127.0.0.1:5000/api/v1/chat/follow-up", {
+      const res = await fetch(`${BACKEND_API}/api/v1/chat/follow-up`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +107,7 @@ export default function Assessment() {
    const sendVoiceExplainedTextToBackend = async () => {
     try {
       const res = await fetch(
-        "http://127.0.0.1:5000/api/v1/chat/generate-prediction",
+        `${BACKEND_API}/api/v1/chat/generate-prediction`,
         {
           method: "POST",
           headers: {
@@ -126,7 +128,7 @@ export default function Assessment() {
   // Send text input to the backend
   const sendTextToBackend = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/v1/chat/follow-up", {
+      const res = await fetch(`${BACKEND_API}/api/v1/chat/follow-up`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -144,7 +146,7 @@ export default function Assessment() {
   const sendExplainedTextToBackend = async () => {
     try {
       const res = await fetch(
-        "http://127.0.0.1:5000/api/v1/chat/generate-prediction",
+        `${BACKEND_API}/api/v1/chat/generate-prediction`,
         {
           method: "POST",
           headers: {

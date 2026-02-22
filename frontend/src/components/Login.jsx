@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
+const BACKEND_API = "https://health-shield.onrender.com"
+
 export default function Login() {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -45,7 +47,7 @@ export default function Login() {
     }
 
     if (isValid) {
-      const res = await fetch("http://127.0.0.1:5000/api/v1/auth/signup", {
+      const res = await fetch(`${BACKEND_API}/api/v1/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -77,7 +79,7 @@ export default function Login() {
     }
 
     if (isValid) {
-      const res = await fetch("http://127.0.0.1:5000/api/v1/auth/login", {
+      const res = await fetch(`${BACKEND_API}/api/v1/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
