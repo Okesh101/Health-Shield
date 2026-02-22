@@ -10,7 +10,7 @@ export default function Assessment() {
   // 🔹 Voice recording state
   const [isRecording, setIsRecording] = useState(false);
   const [audioURL, setAudioURL] = useState(null);
-  const [transcribedText, setTranscribedText] = useState(""); 
+  const [transcribedText, setTranscribedText] = useState("");
   const mediaRecorderRef = useRef(null);
   const audioChunksRef = useRef([]);
   const [textInput, setTextInput] = useState("");
@@ -84,7 +84,7 @@ export default function Assessment() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ "userLog": textInput }),
+        body: JSON.stringify({ userLog: textInput }),
       });
       const data = await res.json();
       setFollowUpData(data.response);
@@ -96,13 +96,16 @@ export default function Assessment() {
   // Send the second explained text input to the backend
   const sendExplainedTextToBackend = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:5000/api/v1/generate-prediction", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ "userLog": textInput }),
-      });
+      const res = await fetch(
+        "http://127.0.0.1:5000/api/v1/generate-prediction",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userLog: textInput }),
+        }
+      );
       const data = await res.json();
       setFollowUpData(data);
     } catch (error) {
@@ -170,37 +173,39 @@ export default function Assessment() {
               </div>
 
               <div className="voice_action_wrapper">
-                 {/* 🎧 Audio Playback */}
-              {transcribedText  && (
-                <div style={{ marginTop: "20px" }}>
-                  <h4>Transcribed Text:</h4>
-                  <p>{transcribedText}</p>
-                </div>
-              )}
-              {audioURL ? (
-                <div style={{ marginTop: "20px" }}>
-                  {transcribedText ? (null) : <audio controls src={audioURL}></audio>}
-                </div>
-              ): null}
+                {/* 🎧 Audio Playback */}
+                {transcribedText && (
+                  <div style={{ marginTop: "20px" }}>
+                    <h4>Transcribed Text:</h4>
+                    <p>{transcribedText}</p>
+                  </div>
+                )}
+                {audioURL ? (
+                  <div style={{ marginTop: "20px" }}>
+                    {transcribedText ? null : (
+                      <audio controls src={audioURL}></audio>
+                    )}
+                  </div>
+                ) : null}
 
-             {!transcribedText ?(
-               <div className="voice_action">
-                  {/* Recorder Icon */}
-                <FiMic className="icon" />
+                {!transcribedText ? (
+                  <div className="voice_action">
+                    {/* Recorder Icon */}
+                    <FiMic className="icon" />
 
-                {/* 🎤 Recording Buttons */}
-                <div style={{ marginTop: "20px" }}>
-                  {!isRecording ? (
-                    <button onClick={startRecording}>Start Recording</button>
-                  ) : (
-                    <button onClick={stopRecording}>Stop Recording</button>
-                  )}
-                </div>
+                    {/* 🎤 Recording Buttons */}
+                    <div style={{ marginTop: "20px" }}>
+                      {!isRecording ? (
+                        <button onClick={startRecording}>
+                          Start Recording
+                        </button>
+                      ) : (
+                        <button onClick={stopRecording}>Stop Recording</button>
+                      )}
+                    </div>
+                  </div>
+                ) : null}
               </div>
-             ): ( null)}
-              </div>
-
-             
             </div>
           ) : (
             <div className="text_mode">
