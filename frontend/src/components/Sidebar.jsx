@@ -119,50 +119,6 @@ export default function Sidebar() {
               </motion.div>
             )}
             </AnimatePresence>
-{/* 
-            <AnimatePresence>
-              {showSideBar && (
-                <motion.div
-                  className="mobile_sideBar_section"
-                  initial={{ y: "-100vh", opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: "-100vh", opacity: 0 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 120,
-                    damping: 20,
-                  }}
-                >
-                  <FiX
-                    className="close_icon"
-                    onClick={() => setShowSideBar(false)}
-                  />
-                  <section>
-                    <button
-                      className={activeTab === "dashboard" ? "active" : ""}
-                      onClick={() => {
-                        navigate("/dashboard");
-                        setActiveTab("dashboard");
-                        setShowSideBar(false);
-                      }}
-                    >
-                      Dashboard
-                    </button>
-
-                    <button
-                      className={activeTab === "assessment" ? "active" : ""}
-                      onClick={() => {
-                        navigate("/assessment");
-                        setActiveTab("assessment");
-                        setShowSideBar(false);
-                      }}
-                    >
-                      Medical Assessment
-                    </button>
-                  </section>
-                </motion.div>
-              )}
-            </AnimatePresence> */}
           </>
         )}
       </div>
