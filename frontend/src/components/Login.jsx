@@ -42,6 +42,8 @@ export default function Login() {
     if (!formData.fullName) {
       setErrors((prev) => ({ ...prev, fullName: "Full name is required" }));
       isValid = false;
+    } else {
+      setErrors((prev) => ({ ...prev, fullName: "" }));
     }
     if (!formData.email) {
       setErrors((prev) => ({ ...prev, email: "Email is required" }));
@@ -52,10 +54,14 @@ export default function Login() {
         email: "Please enter a valid email address",
       }));
       isValid = false;
+    } else{
+      setErrors((prev) => ({ ...prev, email: "" }));
     }
     if (!formData.password) {
       setErrors((prev) => ({ ...prev, password: "Password is required" }));
       isValid = false;
+    } else{
+      setErrors((prev) => ({ ...prev, password: "" }));
     }
 
     if (isValid) {
@@ -85,10 +91,14 @@ export default function Login() {
         email: "Please enter a valid email address",
       }));
       isValid = false;
+    } else {
+      setErrors((prev) => ({ ...prev, email: "" }));
     }
     if (!formData.password) {
       setErrors((prev) => ({ ...prev, password: "Password is required" }));
       isValid = false;
+    } else {
+      setErrors((prev) => ({ ...prev, password: "" }));
     }
 
     if (isValid) {
