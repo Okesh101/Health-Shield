@@ -6,7 +6,7 @@ current_time = dt.datetime.now()
 db = SQLAlchemy()
 
 def continuous_ping():
-    url = "https://health-shield.onrender.com/api/v1/health"
+    url = "https://health-shield-v1.onrender.com/api/v1/health"
     try:
         response = requests.get(url, timeout=10)
         print(f"Ping successful: {response.status_code}")

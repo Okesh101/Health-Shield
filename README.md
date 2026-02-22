@@ -1,11 +1,11 @@
 # AI Health Partner
 
-AI Health Partner is a multi-platform health assistant application with a backend API, web frontend, and mobile app. It leverages AI and machine learning to provide health-related services, including chat, symptom assessment, and predictions.
+Health-Shield is a multi-platform health assistant application with a backend API, web frontend, and mobile app. It leverages AI and machine learning to provide health-related services, including chat, symptom assessment, and predictions.
 
 ## Project Structure
 
 ```
-AI-Health-Partner/
+Health-Shield/
 ├── backend/      # Python Flask API and ML models
 ├── frontend/     # React web app (Vite)
 ├── mobile/       # React Native mobile app (Expo)
@@ -19,7 +19,7 @@ AI-Health-Partner/
   - ML models for symptom analysis and health prediction
   - Database integration (SQLite)
 - **Key files:**
-  - `app.py`: Main Flask app
+  - `main.py`: Main Flask app
   - `requirements.txt`: Python dependencies
   - `app/`: Core modules (routes, models, database)
   - `Dockerfile`: Containerization
@@ -37,7 +37,7 @@ AI-Health-Partner/
 	```
 4. Run the server:
 	```bash
-	python app.py
+	python main.py
 	```
 5. (Optional) Use Docker:
 	```bash
