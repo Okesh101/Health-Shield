@@ -212,9 +212,7 @@ export default function Login() {
         <div className="content">
           <h2>AI-Powered Early Health Detection</h2>
           <p>
-            Quickly assess symptoms of Lassa Fever using structured text or
-            voice input and get fast, accurate risk evaluations to protect your
-            health.
+            Describe your symptoms through voice or text and receive instant, accurate health risk evaluations.
           </p>
           <p>Stay informed, stay healthy!</p>
           <p>Your AI Health Partner.</p>

@@ -1,8 +1,11 @@
 Flask
 Flask[async]
+Flask-SQLAlchemy
 requests
 google-genai
 python-dotenv
+sqlalchemy
+flask_apscheduler
 flask_cors
 gunicorn
 openai
@@ -13,3 +16,4 @@ numpy
 matplotlib 
 seaborn 
 joblib
+pytz
