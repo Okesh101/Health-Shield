@@ -57,6 +57,15 @@ export default function Sidebar() {
             >
               Medical Assessment
             </button>
+             <button
+              className={activeTab === "assessment" ? "active" : ""}
+              onClick={() => {
+                navigate("/assessment");
+                setActiveTab("assessment");
+              }}
+            >
+              About
+            </button>
           </>
         )}
       </div>

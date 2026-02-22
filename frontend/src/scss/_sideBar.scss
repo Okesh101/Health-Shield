@@ -49,11 +49,12 @@
   }
 }
 .mobile_menu {
-  background: linear-gradient(180deg, #0f1c2e 0%, #0b1624 100%);
+  background: linear-gradient(180deg, #0d2a51 0%, #03162f 100%);
   justify-content: space-between;
   align-items: center;
   width: 100%;
   position: fixed;
+  z-index : 999;
   .heading {
     display: flex;
     justify-content: space-between;
@@ -81,7 +82,7 @@
     }
   }
   .mobile_sideBar_section {
-    background: #0f1c2e;
+    background: #05234e;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     position: absolute;
