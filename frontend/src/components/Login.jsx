@@ -9,6 +9,7 @@ export default function Login() {
     password: "",
   });
   const [currentTab, setCurrentTab] = useState("signup");
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,37 +20,74 @@ export default function Login() {
   };
 
   const navigate = useNavigate();
-  // const handleSignIn = () => {
-  //   setCurrentTab("signin");
-  // }
 
   const handleSignUp = async (e) => {
+    let isValid = true;
     e.preventDefault();
 
-    const res = await fetch("http://127.0.0.1:5000/api/v1/auth/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({"formData" : formData}),
-    });
-    const data = await res.json();
-    console.log(data);
-    setCurrentTab("login");
+    if (!formData.fullName) {
+      setErrors((prev) => ({ ...prev, fullName: "Full name is required" }));
+      isValid = false;
+    }
+    if (!formData.email) {
+      setErrors((prev) => ({ ...prev, email: "Email is required" }));
+      isValid = false;
+    } else if (!formData.email.includes("@")) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "Please enter a valid email address",
+      }));
+      isValid = false;
+    }
+    if (!formData.password) {
+      setErrors((prev) => ({ ...prev, password: "Password is required" }));
+      isValid = false;
+    }
+
+    if (isValid) {
+      const res = await fetch("http://127.0.0.1:5000/api/v1/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ formData: formData }),
+      });
+      const data = await res.json();
+      console.log(data);
+      setCurrentTab("login");
+    }
   };
   const handleLogIn = async (e) => {
     e.preventDefault();
+    let isValid = true;
 
-    const res = await fetch("http://127.0.0.1:5000/api/v1/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({"formData" : formData}),
-    });
-    const data = await res.json();
-    navigate("/dashboard");
-    console.log(data);
+    if (!formData.email) {
+      setErrors((prev) => ({ ...prev, email: "Email is required" }));
+      isValid = false;
+    } else if (!formData.email.includes("@")) {
+      setErrors((prev) => ({
+        ...prev,
+        email: "Please enter a valid email address",
+      }));
+      isValid = false;
+    }
+    if (!formData.password) {
+      setErrors((prev) => ({ ...prev, password: "Password is required" }));
+      isValid = false;
+    }
+
+    if (isValid) {
+      const res = await fetch("http://127.0.0.1:5000/api/v1/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ formData: formData }),
+      });
+      const data = await res.json();
+      navigate("/dashboard");
+      console.log(data);
+    }
   };
 
   return (
@@ -64,34 +102,59 @@ export default function Login() {
                 initial={{ x: "300px", opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: "300px", opacity: 0 }}
-                transition={{ duration: 0.7 }}
+                transition={{duration: 0.8, ease: "easeInOut"}}
               >
                 <h1>Sign Up</h1>
                 <form onSubmit={handleSignUp}>
-                  <input
-                    type="text"
-                    name="fullName"
-                    placeholder="Full name e.g John Doe"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="email"
-                    name="email"
-                    get
-                    url
-                    placeholder="Email e.g john@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
+                  <fieldset>
+                    <input
+                      type="text"
+                      name="fullName"
+                      placeholder="Full name e.g John Doe"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                    />
+                    {errors.fullName && (
+                      <span className="error">{errors.fullName}</span>
+                    )}
+                  </fieldset>
+                  <fieldset>
+                    <input
+                      type="email"
+                      name="email"
+                      get
+                      url
+                      placeholder="Email e.g john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email && (
+                      <span className="error">{errors.email}</span>
+                    )}
+                  </fieldset>
+                  <fieldset>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    {errors.password && (
+                      <span className="error">{errors.password}</span>
+                    )}
+                  </fieldset>
                   <button type="submit">Sign Up</button>
+
+                  <div className="existing_acc">
+                    <p>Already have an account?</p>
+                    <button
+                      type="button"
+                      onClick={() => setCurrentTab("login")}
+                    >
+                      Log In
+                    </button>
+                  </div>
                 </form>
               </motion.div>
             ) : (
@@ -101,25 +164,45 @@ export default function Login() {
                 initial={{ x: "200px", opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 exit={{ x: "-200px", opacity: 0 }}
-                transition={{ duration: 0.7, delay: .5, ease: "easeInOut" }}
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeInOut" }}
               >
                 <h1>Log In</h1>
                 <form onSubmit={handleLogIn}>
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email e.g john@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                  />
+                  <fieldset>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Email e.g john@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                    {errors.email && (
+                      <span className="error">{errors.email}</span>
+                    )}
+                  </fieldset>
+                  <fieldset>
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                    />
+                    {errors.password && (
+                      <span className="error">{errors.password}</span>
+                    )}
+                  </fieldset>
                   <button type="submit">Log In</button>
+
+                  <div className="no_acc">
+                    <p>Don't have an account?</p>
+                    <button
+                      type="button"
+                      onClick={() => setCurrentTab("signup")}
+                    >
+                      Sign Up
+                    </button>
+                  </div>
                 </form>
               </motion.div>
             )}

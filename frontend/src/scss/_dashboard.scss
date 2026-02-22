@@ -12,17 +12,52 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     margin-bottom: 40px;
 
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+      padding: 25px;
+      gap: 30px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
     .left {
+      flex: 1;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
       h2 {
         font-size: 28px;
         font-weight: 600;
         margin-bottom: 15px;
+        @media (max-width: 768px) {
+          font-size: 24px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 22px;
+          margin-bottom: 12px;
+        }
       }
 
       p {
         font-size: 15px;
         color: rgba(255, 255, 255, 0.7);
         margin-bottom: 25px;
+        @media (max-width: 768px) {
+          font-size: 14px;
+          max-width: 500px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 13px;
+          margin-bottom: 20px;
+        }
       }
 
       button {
@@ -34,13 +69,35 @@
         font-size: 14px;
         background: linear-gradient(135deg, #2563eb, #1e40af);
         color: white;
+        @media (max-width: 768px) {
+          padding: 12px 24px;
+        }
+
+        @media (max-width: 480px) {
+          padding: 12px 20px;
+          font-size: 13px;
+          width: 100%;
+          max-width: 280px;
+        }
       }
     }
 
     .right {
+      @media (max-width: 768px) {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
       img {
         width: 200px;
         opacity: 0.9;
+        @media (max-width: 768px) {
+          width: 180px;
+        }
+
+        @media (max-width: 480px) {
+          width: 150px;
+        }
       }
     }
   }
@@ -49,10 +106,40 @@
     padding: 30px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    @media (max-width: 768px) {
+      padding: 25px;
+    }
+
+    @media (max-width: 480px) {
+      padding: 20px;
+    }
 
     p {
       color: rgba(255, 255, 255, 0.6);
       font-size: 14px;
+      @media (max-width: 768px) {
+        font-size: 13px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 12px;
+      }
+    }
+    .assessments_list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+      }
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
     }
   }
 }
